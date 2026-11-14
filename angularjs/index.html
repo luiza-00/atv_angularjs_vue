@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html ng-app="minhaApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SINDADOS-BA | Portal</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+    <script src="controladores.js"></script>
+    <script src="directives.js"></script>
+</head>
+
+<body ng-controller="MainController">
+
+    <header>
+        <div class="topo">
+            <h1>{{nome}}</h1>
+            <p>Representação e defesa dos trabalhadores de tecnologia</p>
+        </div>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#noticias">Notícias</a>
+            <a href="#sobre">O Sindicato</a>
+            <a href="#duvidas">Dúvidas</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="destaque" id="inicio">
+            <h2>Trabalhadores unidos fazem a diferença!</h2>
+            <p>Informação, diálogo e defesa dos direitos da categoria de tecnologia da informação na Bahia.</p>      
+        </section>
+
+        <section id="noticias">
+            <h2>Últimas notícias</h2>
+            <p>Acompanhe os principais assuntos da categoria.</p>
+
+            <article class="noticia" ng-if="noticias[pagina-1]">
+                <span>{{noticias[pagina-1].categoria}}</span>
+                <h3>{{noticias[pagina-1].titulo}}</h3>
+                <p>{{noticias[pagina-1].texto}}</p>
+            </article>
+
+            <p>Notícia {{pagina}} de {{noticias.length}}</p>
+
+            <paginacao total="noticias.length" atual="pagina" mudar="mudarPagina(p)"></paginacao>
+        </section>
+
+        <section>
+            <h2>Campanha salarial</h2>
+            <p>Exemplo ilustrativo de acompanhamento das etapas de uma campanha.</p>
+            <barra-progresso valor="progresso"></barra-progresso>
+        </section>
+
+        <section id="sobre">
+            <h2>Conheça o SINDADOS-BA</h2>
+            <minhas-abas abas="abas"></minhas-abas>
+        </section>
+
+        <section>
+            <h2>Filtrar informações</h2>
+            <p>Selecione uma categoria:</p>
+
+            <meu-dropdown opcoes="opcoes" selecionar="selecionarOpcao(opcao)"></meu-dropdown>
+
+            <p>Categoria selecionada: {{opcao}}</p>
+        </section>
+
+        <section id="duvidas">
+            <h2>Perguntas frequentes</h2>
+            <p>Confira algumas informações importantes para os trabalhadores.</p>
+
+            <acordeao itens="perguntas"></acordeao>
+        </section>
+
+        <section>
+            <h2>Atendimento</h2>
+            <p>Entre em contato para buscar informações e orientações.</p>
+            <button ng-click="mostrarToast()">Solicitar atendimento</button>
+            <meu-toast mensagem="mensagem"></meu-toast>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>SINDADOS-BA</h3>
+        <p>Informação e representação dos trabalhadores de tecnologia.</p>
+        <p>Portal demonstrativo desenvolvido com AngularJS.</p>
+    </footer>
+
+</body>
+</html>
